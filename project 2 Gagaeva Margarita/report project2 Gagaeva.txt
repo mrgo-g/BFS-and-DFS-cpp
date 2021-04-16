@@ -1,0 +1,58 @@
+Project 2 report.
+
+For task 1 with wizards in maze I used BFS.
+
+In the BFS is a vertex based technique, we use the queue data structure (FIFO logic) to store the vertices and nodes and for finding a shortest path in graph..
+
+My algorithm starts at the root node and then go through all the adjacent nodes. Then, it selects the closest node and go to all the other unvisited nodes. This process is repeated until all the nodes in the graph are visited.
+
+We count the shortest path( int Path_counting(int Start = 0, int Finish = 0 ) for each wizard. And the wizard who have shortest path( whose rightPath.size is the smallest) will win. Also there is short-way which wizard can use   (Maze.AddEdge(7,4);)
+
+Firstly, we go to [0] node and enqueue it in the visited queue. 
+Then we enqueue its adjacent nodes in the queue.
+
+Secondly, we go to one of the adjacent node and mark it as visited.
+Then we remove it from the queue. And after we put its adjacent nodes in the queue .Because [0] node is already visited we don't pay attention to it.
+
+Thirdly, we dequeue next node, mark it as visited. Then, go to  its adjacent node and add it to the queue.
+
+Then, we dequeue next node from the queue and mark it as visited. If this node has only one adjacent node([0] is visited and we don't do anything to it).
+If this node has more adjacent nodes, we repeat process from previous steps.
+Fourthly, only last node is still in the queue. Its adjacent node is already visited.We mark it as visited.
+
+Finally, the sequence present in the visited list is the BFS.
+
+
+For task 2 I used DFS.
+
+DFS is an edge based technique. It uses the stack data structure, first visited vertices are pushed into stack and second if there is no vertices then visited vertices are popped.
+
+DFS begin with a root node and then goes to the adjacent nodes,  and then goes deeper into the graph .
+
+How it works
+ 1: Insert the root node or starting node of a tree or a graph in the stack.
+2: Pop the top item from the stack and add it to the visited list.
+ 3: Find all the adjacent nodes of the node marked visited and add the ones that are not yet visited, to the stack.
+ 4: Repeat steps 2 and 3 until the stack is empty.
+
+Situation is like that:
+ G.AddEdge(0,1);
+  G.AddEdge(1,3);
+  G.AddEdge(2,3);
+  G.AddEdge(3,5);
+  G.AddEdge(4,3);
+  G.AddEdge(2,0);
+       
+My idea is to separate guests on two groups depending on their likes/dislikes. We imagine graph as relationships between people.
+So, we take 2 people 0 and 1, we know that 0 doesn't like 1 , so we divide them in to two groups(1 and 2). Then, we go to next person, and we already know that person 1 belongs to group 2, we move person #3 to group 1. Next, we check person #2. He/she doesn't like person 3, so person 2 goes to group # 2. Next, we already placed person 3, so we ignore it, and check person #5, we know that person #3 doesn't like person 5, so hi/she goes to group 2. Check person #4, he/she doesn't like person 3, so no other choice but to put it to group 2. People 2 and 0 were already checked, so we ignore them and our guest list is full. 
+
+Firstly, we insert the root node in the stack add it to the visited list. Then we push all its adjacent nodes in the stack.
+
+Secondly, we take of the adjacent nodes(from the top) and pop it from the stack and add it to the visited list.  Then we  look for the adjacent nodes of our previous
+node . Check if there is a node which has been already visited , if they is, we ignore it, and visit next one  which is the top of the stack.
+
+Thirdly , we mark top next node as visited. Then add its adjacent node to the stack.
+
+Fourthly, , we mark previous  node  which is the top of the stack as visited. Check if it has any adjacent  nodes which are not visited. If there are , we repeat process 2 and 3 , if there are   adjacent nodes that were  already been  visited, we ignore them. 
+Finally, the stack is empty and the visited list shows DFS of the graph.
+
